@@ -6,7 +6,8 @@ import 'package:permission_handler/permission_handler.dart';
 void main() => runApp(const MyApp());
 
 // Fill in the App ID obtained from the Agora Console
-const appId = "f960e725feac454f8cba4633f5347af8"; // Replace with your Agora App ID
+const appId =
+    "f960e725feac454f8cba4633f5347af8"; // Replace with your Agora App ID
 
 // Application class
 class MyApp extends StatelessWidget {
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Smart health'),
+        title: const Text('Agora Video Call'),
       ),
       body: Center(
         child: Column(
@@ -49,7 +50,8 @@ class _HomePageState extends State<HomePage> {
               child: TextField(
                 controller: _channelController,
                 decoration: InputDecoration(
-                  errorText: _validateError ? 'Channel name is mandatory' : null,
+                  errorText:
+                      _validateError ? 'Channel name is mandatory' : null,
                   border: const OutlineInputBorder(),
                   hintText: 'Enter Channel Name',
                 ),
@@ -95,7 +97,8 @@ class VideoCallPage extends StatefulWidget {
 
 class _VideoCallPageState extends State<VideoCallPage> {
   int? _remoteUid; // The UID of the remote user
-  bool _localUserJoined = false; // Indicates whether the local user has joined the channel
+  bool _localUserJoined =
+      false; // Indicates whether the local user has joined the channel
   late RtcEngine _engine; // The RtcEngine instance
   bool _muted = false; // Indicates whether the microphone is muted
 
@@ -193,13 +196,6 @@ class _VideoCallPageState extends State<VideoCallPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Video Call'),
-        actions: [
-          // End Call Button
-          IconButton(
-            icon: const Icon(Icons.call_end, color: Colors.red),
-            onPressed: _endCall,
-          ),
-        ],
       ),
       body: Stack(
         children: [
@@ -231,15 +227,21 @@ class _VideoCallPageState extends State<VideoCallPage> {
                   // Mute Button
                   FloatingActionButton(
                     onPressed: _toggleMute,
-                    backgroundColor: _muted ? Colors.red : Colors.white,
+                    backgroundColor: _muted ? Colors.red : Colors.blue,
                     child: Icon(
                       _muted ? Icons.mic_off : Icons.mic,
                     ),
                   ),
-                  // Switch Camera Button
+                  // End Call Button (center)
+                  FloatingActionButton(
+                    onPressed: _endCall,
+                    backgroundColor: Colors.red,
+                    child: const Icon(Icons.call_end),
+                  ),
+                  // Switch Camera Button (right)
                   FloatingActionButton(
                     onPressed: _switchCamera,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Colors.blue,
                     child: const Icon(Icons.cameraswitch),
                   ),
                 ],
